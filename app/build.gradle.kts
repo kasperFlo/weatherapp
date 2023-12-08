@@ -15,10 +15,10 @@ android {
 
     defaultConfig {
         applicationId = "ca.kasperbauer.assignment4v2"
-        minSdk 31
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        minSdk = 31
+        targetSdk = 32
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
