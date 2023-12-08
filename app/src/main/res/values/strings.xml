@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dice Roller</string>
+    <string name="app_name">Campus Weather App</string>
 
     <string name="roll_button_label">Roll %d Dice</string>
     <string name="roll_dice">Roll Dice</string>
@@ -11,14 +11,19 @@
     <string name="dice_image">dice image</string>
 
     <!-- Navigation -->
-    <string name="nav_roller_title">Dice Roller</string>
-    <string name="nav_history_title">Roll History</string>
+    <string name="nav_Trafalgar_title">Trafalgar (Oakville) Campus</string>
+    <string name="nav_Brampton_title">Davis (Brampton) Campus</string>
+    <string name="nav_Mississauga_title">HMC (Mississauga) Campus</string>
+
+
     <string name="back_button">Back</string>
     <string name="roll_count">Roll Count:</string>
     <string name="nav_settings_title">Settings</string>
-    <string name="roller">Roller</string>
-    <string name="history">History</string>
-    <string name="settings">Settings</string>
+
+    <string name="Trafalgar">Traf</string>
+    <string name="Davis">Davis</string>
+    <string name="HMC">HMC</string>
+
     <string name="empty_history">The History is Empty</string>
     <string name="dice">dice</string>
     <string name="values">values:</string>
