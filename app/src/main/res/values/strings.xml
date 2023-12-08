@@ -6,14 +6,16 @@
     <string name="reset_button_label">Reset</string>
     <string name="blank">&#160;</string>
     <string name="roll_total_label">Roll Total:</string>
-    <string name="history_total_label">History Total:</string>
+    <string name="traf_total_label">Traf Total:</string>
     <string name="loading_data">Loading Data</string>
     <string name="dice_image">dice image</string>
 
     <!-- Navigation -->
     <string name="nav_Trafalgar_title">Trafalgar (Oakville) Campus</string>
-    <string name="nav_Brampton_title">Davis (Brampton) Campus</string>
+    <string name="nav_Brampton_title">traf (Brampton) Campus</string>
     <string name="nav_Mississauga_title">HMC (Mississauga) Campus</string>
+
+    <!-- HMC TRAF traf -->
 
 
     <string name="back_button">Back</string>
@@ -21,10 +23,10 @@
     <string name="nav_settings_title">Settings</string>
 
     <string name="Trafalgar">Traf</string>
-    <string name="Davis">Davis</string>
+    <string name="traf">traf</string>
     <string name="HMC">HMC</string>
 
-    <string name="empty_history">The History is Empty</string>
+    <string name="empty_traf">The Traf is Empty</string>
     <string name="dice">dice</string>
     <string name="values">values:</string>
     <string name="value">value:</string>
