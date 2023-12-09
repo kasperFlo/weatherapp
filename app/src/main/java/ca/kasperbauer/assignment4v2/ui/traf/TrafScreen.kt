@@ -1,8 +1,10 @@
 package ca.kasperbauer.assignment4v2.ui.traf
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -15,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -99,11 +102,12 @@ private fun DisplayWeather(weatherData: Pair<Double, String>) {
         fontSize = 24.sp,
         modifier = Modifier.padding(bottom = 16.dp)
     )
-    Text(
-        text = "Condition: ${weatherData.second}",
-        fontSize = 24.sp,
-        modifier = Modifier.padding(bottom = 16.dp)
-    )
+    WeatherImage(weatherCondition = weatherData.second)
+//    Text(
+//        text = "Condition: ${weatherData.second}",
+//        fontSize = 24.sp,
+//        modifier = Modifier.padding(bottom = 16.dp)
+//    )
 }
 
 @Composable
@@ -112,5 +116,24 @@ private fun DisplayDefaultText() {
         text = stringResource(R.string.nav_Trafalgar_title),
         fontSize = 24.sp,
         modifier = Modifier.padding(bottom = 16.dp)
+    )
+}
+
+@Composable
+fun WeatherImage(weatherCondition: String) {
+    val drawableResource = when (weatherCondition) {
+        "clear" -> R.drawable.art_clear
+        "clouds" -> R.drawable.art_clouds
+        "fog" -> R.drawable.art_fog
+        "light_clouds" -> R.drawable.art_light_clouds
+        "light_rain" -> R.drawable.art_light_rain
+        "rain" -> R.drawable.art_rain
+
+        else -> R.drawable.art_clear // Set a default image if the condition doesn't match
+    }
+    Image(
+        painter = painterResource(id = drawableResource),
+        contentDescription = null, // Provide content description as needed
+        modifier = Modifier.size(100.dp) // Set the desired size for the image
     )
 }
