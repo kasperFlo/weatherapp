@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-}@HiltViewModel
-class HMCviewModel @Inject constructor(
+@HiltViewModel
+class HMCViewModel @Inject constructor(
     private val weatherApi: WeatherApi
 ) : ViewModel() {
 
@@ -30,7 +30,7 @@ class HMCviewModel @Inject constructor(
                 Log.d("HMViewModel", "Fetching weather data...") // Log message before fetching
                 _isLoading.value = true
 
-                val weatherData = weatherApi.getWeather(London,uk", "metric", "017f04360d19b1fcc3ca93c3594269e0")
+                val weatherData = weatherApi.getWeather("Hongkong,china", "metric", "017f04360d19b1fcc3ca93c3594269e0")
 
                 Log.d("TrafViewModel", "Weather data received: $weatherData") // Log received data
 

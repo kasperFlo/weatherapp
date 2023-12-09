@@ -24,9 +24,16 @@ fun DisplayWeather(weatherData: Pair<Double, String>) {
 }
 
 @Composable
-fun DisplayDefaultText() {
+fun DisplayDefaultText(campus: String) {
+    val campusStringResId = when (campus) {
+        "traf" -> R.string.nav_Trafalgar_title
+        "davis" -> R.string.nav_Brampton_title
+        "hmc" -> R.string.nav_Mississauga_title
+        else -> R.string.nav_Trafalgar_title // Default to Trafalgar if campus is not recognized
+    }
+
     Text(
-        text = stringResource(R.string.nav_Trafalgar_title),
+        text = stringResource(campusStringResId),
         fontSize = 24.sp,
         modifier = Modifier.padding(bottom = 16.dp)
     )

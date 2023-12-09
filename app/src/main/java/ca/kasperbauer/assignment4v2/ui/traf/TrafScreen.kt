@@ -75,7 +75,7 @@ fun TrafScreen(
             if (weatherData != null) {
                 DisplayWeather(weatherData)
             } else {
-                DisplayDefaultText()
+                DisplayDefaultText("traf")
             }
 
             WeatherFetchButton(isLoading, viewModel::fetchWeatherData)

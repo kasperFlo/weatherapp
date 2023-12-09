@@ -13,7 +13,7 @@ import ca.kasperbauer.assignment4v2.ui.davis.DavisScreen
 import ca.kasperbauer.assignment4v2.ui.davis.DavisViewModel
 
 import ca.kasperbauer.assignment4v2.ui.HMC.HMCScreen
-import ca.kasperbauer.assignment4v2.ui.HMC.HMCViewModel
+import ca.kasperbauer.assignment4v2.uicm.HMCViewModel
 
 
 @Composable
