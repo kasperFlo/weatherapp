@@ -26,7 +26,6 @@ import ca.kasperbauer.assignment4v2.ui.navigation.TrafDestination
 fun TrafScreen(
     viewModel: TrafViewModel,
     onTabPressed: (String) -> Unit,
-    navigateBack: () -> Unit,
     modifier: Modifier = Modifier
 ){
 
@@ -36,8 +35,7 @@ fun TrafScreen(
         topBar = {
             TopAppBar(
                 title = stringResource(TrafDestination.titleRes),
-                canNavigateBack = true,
-                navigateUp = navigateBack,
+                canNavigateBack = false,
                 scrollBehavior = scrollBehavior
             )
         },

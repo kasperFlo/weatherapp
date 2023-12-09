@@ -18,13 +18,14 @@ import ca.kasperbauer.assignment4v2.ui.HMC.HMCViewModel
 
 @Composable
 fun RollerNavHost(navController: NavHostController){
-    NavHost(navController, startDestination = HMCDestination.route){
+    NavHost(navController, startDestination = TrafDestination.route){
 
         composable(route = HMCDestination.route){
             val viewModel: HMCViewModel = hiltViewModel()
             HMCScreen(
                 viewModel = viewModel,
-                onTabPressed = tabNavigate(navController)
+                onTabPressed = tabNavigate(navController),
+                navigateBack = { navController.popBackStack() }
             )
         }
 
@@ -32,8 +33,7 @@ fun RollerNavHost(navController: NavHostController){
             val viewModel: TrafViewModel = hiltViewModel()
             TrafScreen(
                 viewModel = viewModel,
-                onTabPressed = tabNavigate(navController),
-                navigateBack = { navController.popBackStack() }
+                onTabPressed = tabNavigate(navController)
             )
         }
 
@@ -50,9 +50,9 @@ fun RollerNavHost(navController: NavHostController){
 
 @Composable
 private fun tabNavigate(navController: NavHostController): (String) -> Unit = { route: String ->
-    if (route == HMCDestination.route) {
+    if (route == TrafDestination.route) {
         navController.popBackStack(
-            route = HMCDestination.route, inclusive = false
+            route = TrafDestination.route, inclusive = false
         )
     } else {
         navController.navigate(route)

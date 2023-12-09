@@ -20,6 +20,7 @@ import ca.kasperbauer.assignment4v2.ui.navigation.HMCDestination
 fun HMCScreen(
     viewModel: HMCViewModel,
     onTabPressed: (String) -> Unit,
+    navigateBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -33,7 +34,8 @@ fun HMCScreen(
         topBar = {
             TopAppBar(
                 title = stringResource(HMCDestination.titleRes),
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior
             )
         },
