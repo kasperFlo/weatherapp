@@ -1,58 +1,49 @@
-package ca.kasperbauer.assignment4v2.ui.HMC
+package ca.kasperbauer.assignment4v2.uicm
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
-//import ca.kasperbauer.assignment4v2.domain.toUpdatedBy
+import ca.kasperbauer.assignment4v2.remote.WeatherApi
 import dagger.hilt.android.lifecycle.HiltViewModel
+//import ca.kasperbauer.assignment4v2.remote.WeatherData
+
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.util.Date
 import javax.inject.Inject
 
-@HiltViewModel
-class HMCViewModel @Inject constructor(
-//    private val getRollDataUseCase: GetRollDataUseCase,
-//    private val saveRollToTrafUseCase: SaveRollToTrafUseCase,
-//    private val resetTrafUseCase: ResetTrafUseCase,
-//    private val getRollerSavedStateUseCase: GetRollerSavedStateUseCase,
-//    getNumberOfDiceUseCase: GetNumberOfDiceUseCase
+}@HiltViewModel
+class HMCviewModel @Inject constructor(
+    private val weatherApi: WeatherApi
 ) : ViewModel() {
 
-//    private val _rollerUiState: MutableState<RollerUiState> = mutableStateOf(RollerUiState.Loading)
-//    val rollerUiState: State<RollerUiState> = _rollerUiState
+    private val _weatherState: MutableStateFlow<Pair<Double, String>?> = MutableStateFlow(null)
+    val weatherState: StateFlow<Pair<Double, String>?> = _weatherState
 
-//    val numberOfDice: StateFlow<Int> = getNumberOfDiceUseCase()
-//        .stateIn(
-//            scope = viewModelScope,
-//            started = SharingStarted.WhileSubscribed(5_000),
-//            initialValue = 3
-//        )
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
 
-//    init {
-//        viewModelScope.launch {
-//            val rollerSavedState: RollerSavedState = getRollerSavedStateUseCase()
-//            if (rollerSavedState is RollerSavedState.Saved) {
-//                val trafItem: TrafItem = rollerSavedState.trafItem
-//                val trafCounts: TrafCounts = rollerSavedState.trafCounts
-//                _rollerUiState.value = RollerUiState.Rolled(
-//                    rollData = trafItem.rollData,
-//                    trafCounts = trafCounts,
-//                    date = trafItem.date,
-//                )
-//            } else {
-//                _rollerUiState.value = RollerUiState.NotRolled
-//            }
-//        }
-//    }
+    fun fetchWeatherData() {
+        viewModelScope.launch {
+            try {
+                Log.d("HMViewModel", "Fetching weather data...") // Log message before fetching
+                _isLoading.value = true
 
+                val weatherData = weatherApi.getWeather(London,uk", "metric", "017f04360d19b1fcc3ca93c3594269e0")
 
-//    fun onReset() = viewModelScope.launch {
-//        resetTrafUseCase()
-//        _rollerUiState.value = RollerUiState.NotRolled
-//    }
+                Log.d("TrafViewModel", "Weather data received: $weatherData") // Log received data
 
+                val temperature = weatherData.main.temp
+                val weatherCondition = weatherData.weather.firstOrNull()?.main ?: ""
+                _weatherState.value = temperature to weatherCondition
+                _isLoading.value = false
+            } catch (e: Exception) {
+                Log.e("TrafViewModel", "Error fetching weather data: ${e.message}", e) // Log error if any
+                _weatherState.value = null
+                _isLoading.value = false
+
+            }
+        }
+    }
 }
-

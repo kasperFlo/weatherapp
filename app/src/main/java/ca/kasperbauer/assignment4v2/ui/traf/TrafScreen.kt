@@ -26,6 +26,11 @@ import ca.kasperbauer.assignment4v2.ui.common.BottomBar
 import ca.kasperbauer.assignment4v2.ui.common.TopAppBar
 import ca.kasperbauer.assignment4v2.ui.navigation.TrafDestination
 
+import ca.kasperbauer.assignment4v2.ui.common.WeatherFetchButton
+import ca.kasperbauer.assignment4v2.ui.common.DisplayWeather
+import ca.kasperbauer.assignment4v2.ui.common.DisplayDefaultText
+
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -73,67 +78,57 @@ fun TrafScreen(
                 DisplayDefaultText()
             }
 
-//            WeatherFetchButton(viewModel::fetchWeatherData)
             WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
         }
-
-
-
-    }
-
-}
-
-@Composable
-private fun WeatherFetchButton(
-    isLoading: Boolean,
-    onFetchClicked: () -> Unit
-    ) {
-    Button(
-        onClick = { onFetchClicked() },
-        modifier = Modifier.padding(top = 16.dp)
-    ) {
-        Text(text = if (isLoading) "Loading..." else "Fetch Weather")
     }
 }
-@Composable
-private fun DisplayWeather(weatherData: Pair<Double, String>) {
-    Text(
-        text = "Temperature: ${weatherData.first} C",
-        fontSize = 24.sp,
-        modifier = Modifier.padding(bottom = 16.dp)
-    )
-    WeatherImage(weatherCondition = weatherData.second)
+
+//@Composable
+//private fun WeatherFetchButton(
+//    isLoading: Boolean,
+//    onFetchClicked: () -> Unit
+//    ) {
+//    Button(
+//        onClick = { onFetchClicked() },
+//        modifier = Modifier.padding(top = 16.dp)
+//    ) {
+//        Text(text = if (isLoading) "Loading..." else "Fetch Weather")
+//    }
+//}
+//@Composable
+//private fun DisplayWeather(weatherData: Pair<Double, String>) {
+//    WeatherImage(weatherCondition = weatherData.second)
 //    Text(
-//        text = "Condition: ${weatherData.second}",
+//        text = "Temperature: ${weatherData.first} C",
 //        fontSize = 24.sp,
 //        modifier = Modifier.padding(bottom = 16.dp)
 //    )
-}
-
-@Composable
-private fun DisplayDefaultText() {
-    Text(
-        text = stringResource(R.string.nav_Trafalgar_title),
-        fontSize = 24.sp,
-        modifier = Modifier.padding(bottom = 16.dp)
-    )
-}
-
-@Composable
-fun WeatherImage(weatherCondition: String) {
-    val drawableResource = when (weatherCondition) {
-        "clear" -> R.drawable.art_clear
-        "clouds" -> R.drawable.art_clouds
-        "fog" -> R.drawable.art_fog
-        "light_clouds" -> R.drawable.art_light_clouds
-        "light_rain" -> R.drawable.art_light_rain
-        "rain" -> R.drawable.art_rain
-
-        else -> R.drawable.art_clear // Set a default image if the condition doesn't match
-    }
-    Image(
-        painter = painterResource(id = drawableResource),
-        contentDescription = null, // Provide content description as needed
-        modifier = Modifier.size(100.dp) // Set the desired size for the image
-    )
-}
+//}
+//
+//@Composable
+//private fun DisplayDefaultText() {
+//    Text(
+//        text = stringResource(R.string.nav_Trafalgar_title),
+//        fontSize = 24.sp,
+//        modifier = Modifier.padding(bottom = 16.dp)
+//    )
+//}
+//
+//@Composable
+//fun WeatherImage(weatherCondition: String) {
+//    val drawableResource = when (weatherCondition) {
+//        "clear" -> R.drawable.art_clear
+//        "clouds" -> R.drawable.art_clouds
+//        "fog" -> R.drawable.art_fog
+//        "light_clouds" -> R.drawable.art_light_clouds
+//        "light_rain" -> R.drawable.art_light_rain
+//        "rain" -> R.drawable.art_rain
+//
+//        else -> R.drawable.art_clear // Set a default image if the condition doesn't match
+//    }
+//    Image(
+//        painter = painterResource(id = drawableResource),
+//        contentDescription = null, // Provide content description as needed
+//        modifier = Modifier.size(300.dp) // Set the desired size for the image
+//    )
+//}
