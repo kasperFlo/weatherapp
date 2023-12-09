@@ -34,6 +34,9 @@ fun TrafScreen(
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val weatherState = viewModel.weatherState.collectAsState()
+//    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+//    val weatherState by remember { viewModel.weatherState.collectAsState() }
+
 
     Scaffold(modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -72,7 +75,6 @@ fun TrafScreen(
     }
 
 }
-
 
 @Composable
 private fun WeatherFetchButton(onFetchClicked: () -> Unit) {
