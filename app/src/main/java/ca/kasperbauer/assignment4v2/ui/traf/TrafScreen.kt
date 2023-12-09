@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +35,8 @@ fun TrafScreen(
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val weatherState = viewModel.weatherState.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+
 //    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 //    val weatherState by remember { viewModel.weatherState.collectAsState() }
 
@@ -67,7 +70,8 @@ fun TrafScreen(
                 DisplayDefaultText()
             }
 
-            WeatherFetchButton(viewModel::fetchWeatherData)
+//            WeatherFetchButton(viewModel::fetchWeatherData)
+            WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
         }
 
 
@@ -77,18 +81,21 @@ fun TrafScreen(
 }
 
 @Composable
-private fun WeatherFetchButton(onFetchClicked: () -> Unit) {
+private fun WeatherFetchButton(
+    isLoading: Boolean,
+    onFetchClicked: () -> Unit
+    ) {
     Button(
         onClick = { onFetchClicked() },
         modifier = Modifier.padding(top = 16.dp)
     ) {
-        Text(text = "Fetch Weather")
+        Text(text = if (isLoading) "Loading..." else "Fetch Weather")
     }
 }
 @Composable
 private fun DisplayWeather(weatherData: Pair<Double, String>) {
     Text(
-        text = "Temperature: ${weatherData.first}",
+        text = "Temperature: ${weatherData.first} C",
         fontSize = 24.sp,
         modifier = Modifier.padding(bottom = 16.dp)
     )
