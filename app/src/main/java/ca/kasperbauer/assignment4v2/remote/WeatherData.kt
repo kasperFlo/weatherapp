@@ -5,7 +5,8 @@ data class WeatherData(
 )
 
 data class Main(
-    val temp: Double
+    val temp: Double,
+    val feels_like: Double
 )
 
 data class Weather(

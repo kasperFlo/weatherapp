@@ -18,8 +18,8 @@ class HMCViewModel @Inject constructor(
     private val weatherApi: WeatherApi
 ) : ViewModel() {
 
-    private val _weatherState: MutableStateFlow<Pair<Double, String>?> = MutableStateFlow(null)
-    val weatherState: StateFlow<Pair<Double, String>?> = _weatherState
+    private val _weatherState: MutableStateFlow<Triple<Double, String,Double>?> = MutableStateFlow(null)
+    val weatherState: StateFlow<Triple<Double, String,Double>?> = _weatherState
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -32,9 +32,13 @@ class HMCViewModel @Inject constructor(
             try {
                 _isLoading.value = true
                 val weatherData = weatherApi.getWeather("Mississauga,ca", "metric", "017f04360d19b1fcc3ca93c3594269e0")
+
                 val temperature = weatherData.main.temp
                 val weatherCondition = weatherData.weather.firstOrNull()?.main ?: ""
-                _weatherState.value = temperature to weatherCondition
+                val feelsLike = weatherData.main.feels_like
+
+
+                _weatherState.value = Triple(temperature, weatherCondition, feelsLike)
                 _isLoading.value = false
             } catch (e: Exception) {
                 _errorState.value = true // Set error state to true

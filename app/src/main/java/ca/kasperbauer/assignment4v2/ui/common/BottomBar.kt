@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import ca.kasperbauer.assignment4v2.R
 import ca.kasperbauer.assignment4v2.ui.navigation.TrafDestination
 import ca.kasperbauer.assignment4v2.ui.navigation.DavisDestination
@@ -33,17 +34,17 @@ fun BottomBar(
     val navigationItemContentList = listOf(
         NavigationItemContent(
             route = HMCDestination.route,
-            icon = Icons.Default.Home,
+            icon = ImageVector.vectorResource(R.drawable.letter_h_svgrepo_com),
             text = stringResource(id = R.string.HMC)
         ),
         NavigationItemContent(
             route = TrafDestination.route,
-            icon = Icons.Default.List,
+            icon = ImageVector.vectorResource(R.drawable.letter_t_svgrepo_com) ,
             text = stringResource(id = R.string.Trafalgar)
         ),
         NavigationItemContent(
             route = DavisDestination.route,
-            icon = Icons.Default.Settings,
+            icon = ImageVector.vectorResource(R.drawable.letter_d_svgrepo_com),
             text = stringResource(id = R.string.Davis)
         )
     )

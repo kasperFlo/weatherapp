@@ -15,10 +15,15 @@ import androidx.compose.ui.unit.sp
 import ca.kasperbauer.assignment4v2.R
 
 @Composable
-fun DisplayWeather(weatherData: Pair<Double, String>) {
+fun DisplayWeather(weatherData: Triple<Double, String, Double>) {
     WeatherImage(weatherCondition = weatherData.second)
     Text(
         text = "Temperature: ${weatherData.first} C",
+        fontSize = 24.sp,
+        modifier = Modifier.padding(bottom = 16.dp)
+    )
+    Text(
+        text = "Feels Like: ${weatherData.third} C",
         fontSize = 24.sp,
         modifier = Modifier.padding(bottom = 16.dp)
     )
