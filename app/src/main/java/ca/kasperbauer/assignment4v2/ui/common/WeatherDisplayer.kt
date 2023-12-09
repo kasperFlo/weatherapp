@@ -7,6 +7,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -55,5 +56,15 @@ fun WeatherImage(weatherCondition: String) {
         painter = painterResource(id = drawableResource),
         contentDescription = null, // Provide content description as needed
         modifier = Modifier.size(300.dp) // Set the desired size for the image
+    )
+}
+
+@Composable
+fun DisplayError() {
+    Text(
+        text = "Error occurred while fetching weather data",
+        color = Color.Red,
+        fontSize = 20.sp,
+        modifier = Modifier.padding(bottom = 16.dp)
     )
 }

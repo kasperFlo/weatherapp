@@ -23,24 +23,21 @@ class TrafViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _errorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val errorState: StateFlow<Boolean> = _errorState
     fun fetchWeatherData() {
         viewModelScope.launch {
             try {
-                Log.d("TrafViewModel", "Fetching weather data...") // Log message before fetching
                 _isLoading.value = true // S
-
                 val weatherData = weatherApi.getWeather("Oakville,ca", "metric", "017f04360d19b1fcc3ca93c3594269e0")
-
-                Log.d("TrafViewModel", "Weather data received: $weatherData") // Log received data
-
                 val temperature = weatherData.main.temp
                 val weatherCondition = weatherData.weather.firstOrNull()?.main ?: ""
                 _weatherState.value = temperature to weatherCondition
                 _isLoading.value = false
             } catch (e: Exception) {
-                Log.e("TrafViewModel", "Error fetching weather data: ${e.message}", e) // Log error if any
                 _weatherState.value = null
                 _isLoading.value = false
+                _errorState.value = true // Set error state to true
 
             }
         }

@@ -31,6 +31,7 @@ import ca.kasperbauer.assignment4v2.ui.navigation.TrafDestination
 import ca.kasperbauer.assignment4v2.ui.common.WeatherFetchButton
 import ca.kasperbauer.assignment4v2.ui.common.DisplayWeather
 import ca.kasperbauer.assignment4v2.ui.common.DisplayDefaultText
+import ca.kasperbauer.assignment4v2.ui.common.DisplayError
 
 
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,6 +47,7 @@ fun TrafScreen(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val weatherState = viewModel.weatherState.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+    val errorState by viewModel.errorState.collectAsState()
 
 //    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 //    val weatherState by remember { viewModel.weatherState.collectAsState() }
@@ -76,13 +78,16 @@ fun TrafScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                val weatherData = weatherState.value
-                if (weatherData != null) {
-                    DisplayWeather(weatherData)
+                if (errorState) { // Display error message if error state is true
+                    DisplayError()
                 } else {
-                    DisplayDefaultText("traf")
+                    val weatherData = weatherState.value
+                    if (weatherData != null) {
+                        DisplayWeather(weatherData)
+                    } else {
+                        DisplayDefaultText("traf")
+                    }
                 }
-
                 WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
             }
         }

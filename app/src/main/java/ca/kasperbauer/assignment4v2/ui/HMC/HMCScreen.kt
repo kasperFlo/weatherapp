@@ -18,6 +18,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import ca.kasperbauer.assignment4v2.ui.common.BottomBar
 import ca.kasperbauer.assignment4v2.ui.common.DisplayDefaultText
+import ca.kasperbauer.assignment4v2.ui.common.DisplayError
 import ca.kasperbauer.assignment4v2.ui.common.DisplayWeather
 import ca.kasperbauer.assignment4v2.ui.common.TopAppBar
 import ca.kasperbauer.assignment4v2.ui.common.WeatherFetchButton
@@ -35,6 +36,7 @@ fun HMCScreen(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val weatherState = viewModel.weatherState.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+    val errorState by viewModel.errorState.collectAsState()
 
     Scaffold(modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -62,11 +64,15 @@ fun HMCScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                val weatherData = weatherState.value
-                if (weatherData != null) {
-                    DisplayWeather(weatherData)
+                if (errorState) { // Display error message if error state is true
+                    DisplayError()
                 } else {
-                    DisplayDefaultText("hmc")
+                    val weatherData = weatherState.value
+                    if (weatherData != null) {
+                        DisplayWeather(weatherData)
+                    } else {
+                        DisplayDefaultText("hmc")
+                    }
                 }
                 WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
             }

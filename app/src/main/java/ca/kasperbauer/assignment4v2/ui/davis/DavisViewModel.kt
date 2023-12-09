@@ -23,6 +23,8 @@ class DavisViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _errorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val errorState: StateFlow<Boolean> = _errorState
     fun fetchWeatherData() {
         viewModelScope.launch {
             try {
@@ -35,10 +37,9 @@ class DavisViewModel @Inject constructor(
                 _weatherState.value = temperature to weatherCondition
                 _isLoading.value = false
             } catch (e: Exception) {
-
+                _errorState.value = true // Set error state to true
                 _weatherState.value = null
                 _isLoading.value = false
-
             }
         }
     }

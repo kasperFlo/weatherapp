@@ -24,20 +24,22 @@ class HMCViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    private val _errorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val errorState: StateFlow<Boolean> = _errorState
+
     fun fetchWeatherData() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                val weatherData = weatherApi.getWeather("Mssissauga,ca", "metric", "017f04360d19b1fcc3ca93c3594269e0")
+                val weatherData = weatherApi.getWeather("Mississauga,ca", "metric", "017f04360d19b1fcc3ca93c3594269e0")
                 val temperature = weatherData.main.temp
                 val weatherCondition = weatherData.weather.firstOrNull()?.main ?: ""
                 _weatherState.value = temperature to weatherCondition
                 _isLoading.value = false
             } catch (e: Exception) {
-                Log.e("TrafViewModel", "Error fetching weather data: ${e.message}", e) // Log error if any
+                _errorState.value = true // Set error state to true
                 _weatherState.value = null
                 _isLoading.value = false
-
             }
         }
     }
