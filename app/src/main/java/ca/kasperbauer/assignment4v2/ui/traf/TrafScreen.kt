@@ -1,7 +1,9 @@
 package ca.kasperbauer.assignment4v2.ui.traf
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -40,7 +42,7 @@ fun TrafScreen(
     viewModel: TrafViewModel,
     onTabPressed: (String) -> Unit,
     modifier: Modifier = Modifier
-){
+) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val weatherState = viewModel.weatherState.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -64,21 +66,25 @@ fun TrafScreen(
             )
         }
     ) { innerPadding ->
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Box(
+            contentAlignment = Alignment.Center, // Center content horizontally and vertically
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxWidth()
+                .fillMaxSize() // Fill the entire available space
         ) {
-            val weatherData = weatherState.value
-            if (weatherData != null) {
-                DisplayWeather(weatherData)
-            } else {
-                DisplayDefaultText("traf")
-            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                val weatherData = weatherState.value
+                if (weatherData != null) {
+                    DisplayWeather(weatherData)
+                } else {
+                    DisplayDefaultText("traf")
+                }
 
-            WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
+                WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
+            }
         }
     }
 }

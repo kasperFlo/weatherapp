@@ -1,7 +1,9 @@
 package ca.kasperbauer.assignment4v2.ui.HMC
 
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -50,20 +52,24 @@ fun HMCScreen(
             )
         }
     ) { innerPadding ->
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Box(
+            contentAlignment = Alignment.Center, // Center content horizontally and vertically
             modifier = Modifier
                 .padding(innerPadding)
-                .fillMaxWidth()
+                .fillMaxSize() // Fill the entire available space
         ) {
-            val weatherData = weatherState.value
-            if (weatherData != null) {
-                DisplayWeather(weatherData)
-            } else {
-                DisplayDefaultText("hmc")
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                val weatherData = weatherState.value
+                if (weatherData != null) {
+                    DisplayWeather(weatherData)
+                } else {
+                    DisplayDefaultText("hmc")
+                }
+                WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
             }
-            WeatherFetchButton(isLoading, viewModel::fetchWeatherData)
         }
     }
 }
