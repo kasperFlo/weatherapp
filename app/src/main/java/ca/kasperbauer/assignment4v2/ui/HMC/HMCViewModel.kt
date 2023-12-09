@@ -27,13 +27,8 @@ class HMCViewModel @Inject constructor(
     fun fetchWeatherData() {
         viewModelScope.launch {
             try {
-                Log.d("HMViewModel", "Fetching weather data...") // Log message before fetching
                 _isLoading.value = true
-
-                val weatherData = weatherApi.getWeather("Hongkong,china", "metric", "017f04360d19b1fcc3ca93c3594269e0")
-
-                Log.d("TrafViewModel", "Weather data received: $weatherData") // Log received data
-
+                val weatherData = weatherApi.getWeather("Mssissauga,ca", "metric", "017f04360d19b1fcc3ca93c3594269e0")
                 val temperature = weatherData.main.temp
                 val weatherCondition = weatherData.weather.firstOrNull()?.main ?: ""
                 _weatherState.value = temperature to weatherCondition
