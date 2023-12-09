@@ -58,7 +58,7 @@ fun TrafScreen(
         ){
             //inner content
             Text(
-                text = stringResource(R.string.nav_Brampton_title),
+                text = stringResource(R.string.nav_Trafalgar_title),
                 fontSize = 24.sp,
                 modifier = Modifier.padding(bottom = 16.dp)
             )

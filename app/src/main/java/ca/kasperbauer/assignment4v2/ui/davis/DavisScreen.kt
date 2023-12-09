@@ -1,4 +1,4 @@
-package ca.kasperbauer.assignment4v2.ui.settings
+package ca.kasperbauer.assignment4v2.ui.davis
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -57,7 +57,7 @@ fun DavisScreen(
         ){
             //inner content
             Text(
-                text = stringResource(R.string.nav_Brampton_title),
+                text = stringResource(R.string.nav_Mississauga_title),
                 fontSize = 24.sp,
                 modifier = Modifier.padding(bottom = 16.dp)
             )

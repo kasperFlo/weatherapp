@@ -1,4 +1,4 @@
-package ca.kasperbauer.assignment4v2.ui.settings
+package ca.kasperbauer.assignment4v2.ui.davis
 
 import androidx.lifecycle.ViewModel
 //import androidx.lifecycle.viewModelScope

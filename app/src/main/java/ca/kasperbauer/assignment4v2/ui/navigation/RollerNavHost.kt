@@ -9,8 +9,8 @@ import androidx.navigation.compose.composable
 import ca.kasperbauer.assignment4v2.ui.traf.TrafScreen
 import ca.kasperbauer.assignment4v2.ui.traf.TrafViewModel
 
-import ca.kasperbauer.assignment4v2.ui.settings.DavisScreen
-import ca.kasperbauer.assignment4v2.ui.settings.DavisViewModel
+import ca.kasperbauer.assignment4v2.ui.davis.DavisScreen
+import ca.kasperbauer.assignment4v2.ui.davis.DavisViewModel
 
 import ca.kasperbauer.assignment4v2.ui.HMC.HMCScreen
 import ca.kasperbauer.assignment4v2.ui.HMC.HMCViewModel
