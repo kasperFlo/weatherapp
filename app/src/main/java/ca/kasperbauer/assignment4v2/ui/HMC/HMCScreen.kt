@@ -17,7 +17,7 @@ import ca.kasperbauer.assignment4v2.ui.navigation.HMCDestination
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RollerScreen(
+fun HMCScreen(
     viewModel: HMCViewModel,
     onTabPressed: (String) -> Unit,
     modifier: Modifier = Modifier

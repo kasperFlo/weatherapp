@@ -22,7 +22,7 @@ import ca.kasperbauer.assignment4v2.ui.navigation.DavisDestination
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun DavisScreen(
     viewModel: DavisViewModel,
     onTabPressed: (String) -> Unit,
     navigateBack: () -> Unit,

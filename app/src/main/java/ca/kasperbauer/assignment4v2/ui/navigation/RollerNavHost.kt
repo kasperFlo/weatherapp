@@ -5,12 +5,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-//import ca.kasperbauer.assignment4v2.ui.traf.TrafScreen
-//import ca.kasperbauer.assignment4v2.ui.traf.TrafViewModel
-import ca.kasperbauer.assignment4v2.ui.HMC.RollerScreen
+
+import ca.kasperbauer.assignment4v2.ui.traf.TrafScreen
+import ca.kasperbauer.assignment4v2.ui.traf.TrafViewModel
+
+import ca.kasperbauer.assignment4v2.ui.settings.DavisScreen
+import ca.kasperbauer.assignment4v2.ui.settings.DavisViewModel
+
+import ca.kasperbauer.assignment4v2.ui.HMC.HMCScreen
 import ca.kasperbauer.assignment4v2.ui.HMC.HMCViewModel
-import ca.kasperbauer.assignment4v2.ui.traf.SettingsScreen
-import ca.kasperbauer.assignment4v2.ui.settings.trafViewModel
+
 
 @Composable
 fun RollerNavHost(navController: NavHostController){
@@ -18,24 +22,24 @@ fun RollerNavHost(navController: NavHostController){
 
         composable(route = HMCDestination.route){
             val viewModel: HMCViewModel = hiltViewModel()
-            RollerScreen(
+            HMCScreen(
                 viewModel = viewModel,
                 onTabPressed = tabNavigate(navController)
             )
         }
 
-//        composable(route = TrafDestination.route){
-//            val viewModel: TrafViewModel = hiltViewModel()
-//            TrafScreen(
-//                viewModel = viewModel,
-//                onTabPressed = tabNavigate(navController),
-//                navigateBack = { navController.popBackStack() }
-//            )
-//        }
+        composable(route = TrafDestination.route){
+            val viewModel: TrafViewModel = hiltViewModel()
+            TrafScreen(
+                viewModel = viewModel,
+                onTabPressed = tabNavigate(navController),
+                navigateBack = { navController.popBackStack() }
+            )
+        }
 
-        composable(route = trafDestination.route){
-            val viewModel: trafViewModel = hiltViewModel()
-            SettingsScreen(
+        composable(route = DavisDestination.route){
+            val viewModel: DavisViewModel = hiltViewModel()
+            DavisScreen(
                 viewModel = viewModel,
                 onTabPressed = tabNavigate(navController),
                 navigateBack = { navController.popBackStack() }

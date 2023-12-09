@@ -23,7 +23,7 @@ import ca.kasperbauer.assignment4v2.ui.navigation.TrafDestination
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun TrafScreen(
     viewModel: TrafViewModel,
     onTabPressed: (String) -> Unit,
     navigateBack: () -> Unit,

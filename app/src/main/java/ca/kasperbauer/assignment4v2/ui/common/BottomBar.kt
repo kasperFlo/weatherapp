@@ -14,8 +14,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import ca.kasperbauer.assignment4v2.R
 import ca.kasperbauer.assignment4v2.ui.navigation.TrafDestination
+import ca.kasperbauer.assignment4v2.ui.navigation.DavisDestination
 import ca.kasperbauer.assignment4v2.ui.navigation.HMCDestination
-import ca.kasperbauer.assignment4v2.ui.navigation.trafDestination
+
 
 private data class NavigationItemContent(
     val route: String,
@@ -41,9 +42,9 @@ fun BottomBar(
             text = stringResource(id = R.string.Trafalgar)
         ),
         NavigationItemContent(
-            route = trafDestination.route,
+            route = DavisDestination.route,
             icon = Icons.Default.Settings,
-            text = stringResource(id = R.string.traf)
+            text = stringResource(id = R.string.Davis)
         )
     )
 
